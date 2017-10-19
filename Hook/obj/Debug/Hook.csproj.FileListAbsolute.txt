@@ -1,0 +1,9 @@
+C:\Users\Hupengpeng\Downloads\API Hook\CAT\Hook\bin\Debug\Hook.exe.config
+C:\Users\Hupengpeng\Downloads\API Hook\CAT\Hook\bin\Debug\Hook.exe
+C:\Users\Hupengpeng\Downloads\API Hook\CAT\Hook\bin\Debug\Hook.pdb
+C:\Users\Hupengpeng\Downloads\API Hook\CAT\Hook\obj\Debug\Hook.csprojResolveAssemblyReference.cache
+C:\Users\Hupengpeng\Downloads\API Hook\CAT\Hook\obj\Debug\Hook.Form1.resources
+C:\Users\Hupengpeng\Downloads\API Hook\CAT\Hook\obj\Debug\Hook.Properties.Resources.resources
+C:\Users\Hupengpeng\Downloads\API Hook\CAT\Hook\obj\Debug\Hook.csproj.GenerateResource.Cache
+C:\Users\Hupengpeng\Downloads\API Hook\CAT\Hook\obj\Debug\Hook.exe
+C:\Users\Hupengpeng\Downloads\API Hook\CAT\Hook\obj\Debug\Hook.pdb

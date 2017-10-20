@@ -66,16 +66,25 @@ namespace Hook
                 Console.WriteLine("您的机子因Sock问题无法运行此软件");
                 return false;
             }
-            ProcAddress = GetProcAddress(hModule, ProcName); //取入口地址   
-            if (ProcAddress == IntPtr.Zero) return false;
-            if (!VirtualProtect(ProcAddress, 5, PAGE_EXECUTE_READWRITE, ref lpflOldProtect)) return false; //修改内存属性   
-            Marshal.Copy(ProcAddress, OldEntry, 0, 5); //读取前5字节   
-            NewEntry = AddBytes(new byte[1] { 233 }, BitConverter.GetBytes((Int32)((Int32)lpAddress - (Int32)ProcAddress - 5))); //计算新入口跳转   
-            Marshal.Copy(NewEntry, 0, ProcAddress, 5); //写入前5字节   
-            OldEntry = AddBytes(OldEntry, new byte[5] { 233, 0, 0, 0, 0 });
-            OldAddress = lstrcpyn(OldEntry, OldEntry, 0); //取变量指针   
-            Marshal.Copy(BitConverter.GetBytes((double)((Int32)ProcAddress - (Int32)OldAddress - 5)), 0, (IntPtr)(OldAddress.ToInt32() + 6), 4); //保存JMP   
-            FreeLibrary(hModule); //释放模块句柄   
+            try
+            {
+                ProcAddress = GetProcAddress(hModule, ProcName); //取入口地址   
+                if (ProcAddress == IntPtr.Zero) return false;
+                if (!VirtualProtect(ProcAddress, 5, PAGE_EXECUTE_READWRITE, ref lpflOldProtect)) return false; //修改内存属性   
+                Marshal.Copy(ProcAddress, OldEntry, 0, 5); //读取前5字节   
+                NewEntry = AddBytes(new byte[1] { 233 }, BitConverter.GetBytes((Int32)((Int32)lpAddress - (Int32)ProcAddress - 5))); //计算新入口跳转   
+                Marshal.Copy(NewEntry, 0, ProcAddress, 5); //写入前5字节   
+                OldEntry = AddBytes(OldEntry, new byte[5] { 233, 0, 0, 0, 0 });
+                OldAddress = lstrcpyn(OldEntry, OldEntry, 0); //取变量指针   
+                Marshal.Copy(BitConverter.GetBytes((double)((Int32)ProcAddress - (Int32)OldAddress - 5)), 0, (IntPtr)(OldAddress.ToInt32() + 6), 4); //保存JMP   
+                FreeLibrary(hModule); //释放模块句柄   
+            }
+            catch (Exception)
+            {
+               Console.WriteLine("您的机子无法运行此软件");
+               return false;
+
+            }
             return true;
         }
         public void Suspend()
